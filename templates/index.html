@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 2em auto;
+            padding: 1em;
+            background-color: white;
+            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Information About Heart Disease API</h1>
+    </header>
+
+    <section>
+        <p>This is an ML API used for predicting the probability of having heart disease by Classification. The API is created by Serhat KILIÇ.</p>
+        <h2>Dataset</h2>
+        <p>This dataset was obtained from the heart disease data set on Kaggle.</p><a href="https://www.kaggle.com/datasets/yasserh/heart-disease-dataset">Dataset</a>
+        <h2>About ML API</h2>
+        <p>First, you must fill in all the blanks, radio buttons, and other components of the API. If you know the all inputs and what they are 
+          please visit the <a href="{{ url_for('user_info') }}">Predict</a>
+        </p>
+
+        <h3>Explanation About Inputs:</h3>
+        <p><strong>Age:</strong> Age of the patient</p>
+        <p><strong>Sex:</strong> Gender of the patient</p>
+        <p><strong>Cp:</strong> Chest pain categorized by the patient (0-3)</p>
+        <p><strong>Trestbps:</strong> Heart pulse per minute</p>
+        <p><strong>Chol:</strong> Cholesterol of the patient</p>
+        <p><strong>Fbs (Fasting Blood Sugar):</strong> It is 0 if it is under 120 mg/dl</p>
+        <p><strong>Restecg:</strong> It shows resting electrocardiographic results.</p>
+        <ul>
+            <li>0: Normal</li>
+            <li>1: ST-T waves anomalies</li>
+            <li>2: Possible or definite left ventricular hypertrophy determined by ECG</li>
+        </ul>
+        <p><strong>Thalach:</strong> Maximum Heart Rate Achieved</p>
+        <p><strong>Exang (Exercise Induced Angina):</strong> It is 0 if there is no angina due to exercise. Otherwise 1.</p>
+        <p><strong>Oldpeak (ST Depression Induced by Exercise):</strong> It represents induced ST depression by exercise.</p>
+        <p><strong>Slope:</strong> It represents slope of ST segment.</p>
+        <ul>
+            <li>0: No slope</li>
+            <li>1: An elevated ST segment with stroke onset.</li>
+            <li>2: A depressed ST segment is the onset of stroke.</li>
+        </ul>      
+        <p><strong>Ca (Major Vessels Colored by Fluroscopy):</strong> It respresents number of big vessels colorized by fluroroscophy</p>
+        <p><strong>Thal:</strong> It represents type of thalassemia</p>
+
+    </section>
+</body>
+
+</html>

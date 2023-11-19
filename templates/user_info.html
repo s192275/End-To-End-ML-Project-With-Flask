@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Prediction of Heart Disease</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        .login {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+        }
+
+        input,
+        select {
+            padding: 10px;
+            margin: 5px 0;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .radio-group,
+        .select-group {
+            margin-bottom: 10px;
+        }
+
+        .prediction {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <p>If you don't know anything about input variables please visit the 
+        <a href="/">Home Page</a>
+    </p>
+
+    <div class="login">
+        <form action="{{ url_for('predict')}}" method="post" id="predictionForm">
+            <label for="age">Age:</label>
+            <input type="text" id="age" name="Age" placeholder="Enter Age" required="required" />
+
+            <div class="radio-group">
+              <label>Sex:</label>
+              <input type="radio" id="male" name="Sex" value="1" required="required">
+              <label for="male">Male</label>
+              <input type="radio" id="female" name="Sex" value="0" required="required">
+              <label for="female">Female</label>
+          </div>            
+            
+          <div class="select-group">
+            <label>Cp:</label>
+            <select id="cp" name="Cp">
+                <!-- Dynamic options will be added here -->
+                <script>
+                  // Dynamic options for Cp
+                  var cpSelect = document.getElementById("cp");
+                  for (var i = 1; i <= 3; i++) {
+                      var option = document.createElement("option");
+                      option.value = i.toString();
+                      option.text = i + " - " + (i === 1 ? "Low" : (i === 2 ? "Mid" : "Much"));
+                      cpSelect.add(option);
+                  }
+              </script>
+              </select>
+        </div>
+
+          <label for="trestbps">Trestbps:</label>
+            <input type="text" id="trestbps" name="Trestbps" placeholder="Enter Trestbps" required="required" />
+
+            <label for="chol">Chol:</label>
+            <input type="text" id="chol" name="Chol" placeholder="Enter Cholesterol" required="required" />
+
+            <div class="radio-group">
+              <label>Fbs:</label>
+              <input type="radio" id="under_120_mg/dl" name="Fbs" value="0" required="required">
+              <label for="under_120_mg/dl">Under 120 mg/dl</label>
+              <input type="radio" id="upper_120_mg/dl" name="Fbs" value="1" required="required">
+              <label for="upper_120_mg/dl">More than 120 mg/dl</label>
+          </div>
+
+          <div class="select-group">
+            <label>Restecg:</label>
+            <select id="restecg" name="Restecg">
+                <!-- Dynamic options will be added here -->
+                <script>
+                  // Dynamic options for Restecg
+                  var restecgSelect = document.getElementById("restecg");
+                  for (var j = 1; j <= 3; j++) {
+                      var optionRestecg = document.createElement("option");
+                      optionRestecg.value = j.toString();
+                      optionRestecg.text = j;
+                      restecgSelect.add(optionRestecg);
+                  }
+              </script>
+              </select>
+        </div>
+
+            <label for="thalach">Thalach:</label>
+            <input type="text" id="thalach" name="Thalach" placeholder="Enter Thalach Value" required="required" />
+
+              <div class="radio-group">
+                <label>Exang:</label>
+                <input type="radio" id="angina_yes" name="Exang" value="1" required="required">
+                <label for="angina_yes">Angina Available</label>
+                <input type="radio" id="angina_no" name="Exang" value="0" required="required">
+                <label for="angina_no">Angina Nonavailable</label>
+            </div>
+
+            <label for="oldpeak">Oldpeak:</label>
+            <input type="text" id="oldpeak" name="Oldpeak" placeholder="Enter Oldpeak Value" required="required" />
+
+            <div class="select-group">
+                <label>Slope:</label>
+                <select id="slope" name="Slope">
+                    <!-- Dynamic options will be added here -->
+                    <script>
+                      // Dynamic options for Cp
+                      var cpSelect = document.getElementById("slope");
+                      for (var i = 0; i <= 2; i++) {
+                          var option = document.createElement("option");
+                          option.value = i.toString();
+                          option.text = i;
+                          cpSelect.add(option);
+                      }
+                  </script>
+                  </select>
+            </div>
+
+            <label for="ca">Ca:</label>
+            <input type="text" id="ca" name="Ca" placeholder="Enter Ca Value" required="required" />
+            
+            <div class="select-group">
+              <label for="thal">Thal:</label>
+              <select id="thal" name="Thal">
+                  <!-- Dynamic options for Thal -->
+                  <script>
+                      var thalSelect = document.getElementById("thal");
+                      for (var j = 0; j <= 3; j++) {
+                          var optionThal = document.createElement("option");
+                          optionThal.value = j.toString();
+                          optionThal.text = j;
+                          thalSelect.add(optionThal);
+                      }
+                  </script>
+              </select>
+          </div>
+          
+            <button type="submit">Predict</button>
+        </form>
+        
+        <div class="prediction">
+            {{ prediction_text }}
+        </div>
+    </div>
+
+</body>
+</html>
